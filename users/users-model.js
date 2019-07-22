@@ -4,7 +4,8 @@ const db = require('../data/db-config.js');
 
 module.exports = {
   findById,
-  register
+  register,
+  findBy
 };
 
 function findById(id) {
@@ -18,4 +19,8 @@ async function register(user) {
   const [id] = await db('users').insert(user);
 
   return findById(id);
+}
+
+function findBy(filter) {
+  return db('users').where(filter);
 }
